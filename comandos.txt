@@ -1,0 +1,14 @@
+#instalar bootstrap
+npm i -D bootstrap @popperjs/core sass
+
+carpeta resources/css renombrar a scss, cambiar extension del archivo app.css a app.scss
+
+archivo scss
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+archivo js/app.js
+
+import './bootstrap';
+
+import '../scss/app.scss';
+import * from 'bootstrap';
