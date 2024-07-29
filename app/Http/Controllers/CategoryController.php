@@ -14,14 +14,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category.index');
+        $categories = Category::orderBy('id','desc')->paginate(5);
+        return view('category.index',compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         return view('category.create');
     }
 
@@ -33,7 +34,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['name']);
         Category::create($data);
-        return to_route('category.create')->with('status','Registro Creado Correctamente!');
+        return to_route('category.index')->with('status','Registro Creado Correctamente!');
     }
 
     /**
@@ -49,22 +50,33 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::find($id);
+        return view('category.edit',compact('categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, Category $category)
+    {   
+        $request['slug'] =  Str::slug($request->name);
+
+        $request->validate([
+            'name'  => 'required|min:2|max:100',
+            'slug'    => 'required|unique:categories,slug,' . $category->id,
+            'visible' => 'required|integer'
+        ]);
+
+        $category->update($request->all());
+        return redirect()->route('category.index')->with('status', 'Categoría actualizada correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('category.index')->with('status', 'Categoría eliminada correctamente');
     }
 }

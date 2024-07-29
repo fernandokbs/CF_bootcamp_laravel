@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->primary();;
             $table->string('name',100);
             $table->string('slug')->unique();
+            $table->integer('visible');
             $table->timestamps();
         });
     }
