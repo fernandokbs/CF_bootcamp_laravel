@@ -12,3 +12,21 @@ import './bootstrap';
 
 import '../scss/app.scss';
 import * from 'bootstrap';
+
+
+************************************
+
+
+php artisan make:model Category -m
+php artisan make:model Product -m
+php artisan make:migration create_category_product_table
+
+$category = Category::find(1);
+$products = $category->products()->get();
+$category = Category::with('products')->find(1);
+
+
+
+ $data = $request->validated();
+        $data['slug'] = Str::slug($data['title']);
+        Post::create($data);
