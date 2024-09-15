@@ -92,7 +92,6 @@
                             <select id="tipo" name="tipo"
                                 class="mt-2 block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
-                                <option selected>Elige un estado</option>
                                 @if ($user->tipo == 'usuario')
                                     <option value="usuario" selected>Usuario</option>
                                     <option value="administrador">Administrador</option>
@@ -113,14 +112,8 @@
                             <select id="activo" name="activo"
                                 class="mt-2 block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
-                                <option selected>Elige un estado</option>
-                                @if ($user->activo == 1)
-                                    <option value="1" selected>Si</option>
-                                    <option value="0">No</option>
-                                @elseif($user->activo == 0)
-                                    <option value="1">Si</option>
-                                    <option value="0" selected>No</option>
-                                @endif
+                                <option value="1" {{ $user->activo == 1 ? 'selected' : '' }}>Sí</option>
+                                <option value="0" {{ $user->activo == 0 ? 'selected' : '' }}>No</option>
 
                                 @error('activo')
                                     <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"

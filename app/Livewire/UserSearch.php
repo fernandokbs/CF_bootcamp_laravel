@@ -20,6 +20,7 @@ class UserSearch extends Component
         // Realizar la búsqueda en base al valor de $search
         $users = User::where('name', 'like', '%' . $this->search . '%')
             ->orWhere('email', 'like', '%' . $this->search . '%')
+            ->orderBy('id', 'desc')
             ->paginate(10);
 
         return view('livewire.user-search', ['users' => $users]);

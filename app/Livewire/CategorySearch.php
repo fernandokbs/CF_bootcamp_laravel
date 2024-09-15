@@ -13,6 +13,7 @@ class CategorySearch extends Component
     {
         // Realizar la búsqueda en base al valor de $search
         $categories = Category::where('name', 'like', '%' . $this->search . '%')
+            ->orderBy('id', 'desc')
             ->paginate(10);
 
         return view('livewire.category-search', ['categories' => $categories]);

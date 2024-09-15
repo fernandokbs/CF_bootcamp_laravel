@@ -43,6 +43,9 @@ php artisan make:migration add_activo_to_users_table --table=users
 #LIvewire
 composer require livewire/livewire
 php artisan make:livewire UserSearch
+php artisan make:livewire CategorySearch
+php artisan make:livewire ProductSearch
+
 
 (lógica del componente)
 app/Http/Livewire/ProductSearch.php
@@ -50,3 +53,28 @@ app/Http/Livewire/ProductSearch.php
 (vista del componente)
 resources/views/livewire/product-search.blade.php
 
+*********************************************************************
+
+X Autenticación y Autorización
+X Gestión de Productos
+X Gestion de categorias
+- Panel de Administración
+- Sistema de Cache
+
+- Manejo de roles (Admin/User)
+- Carrito de Compras
+- Proceso de Pago (Paypal, Stripe)
+
+Lineamientos
+● Inyección de Dependencias.
+● Uso de Facade
+● Registro servicio en service container
+● Integración servicio tercero
+● Uso de cache
+● Uso de pruebas unitarias
+● Uso de pruebas en navegador
+● Uso de pest/PHPUnit (Mocks)
+● Uso Livewire (Opcional) (Si se usa Livewire usar volt)
+● Uso de convenciones en Laravel
+● Use de Laravel pint ( Para el formateo de código)
+- CSS/Bootstrap/Tailwind
