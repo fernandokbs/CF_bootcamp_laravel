@@ -15,26 +15,25 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        $products = Product::with('categories')->orderBy('id','desc')->paginate(5);
-        return view('product.index',compact('products'));
+    {
+        return view('product.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
-        $category = Category::pluck('id','name');
-        return view('product.create',compact('category'));
+    {
+        $category = Category::pluck('id', 'name');
+        return view('product.create', compact('category'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        
+    {
+
 
         $data = $request->all();
 
@@ -43,32 +42,21 @@ class ProductController extends Controller
             $path = $request->file('file')->store('products', 'public');
             $data['image'] = $path;
         }
-    
+
         $data['slug'] = Str::slug($data['name']);
         $product = Product::create($data);
 
-        if($request->categories){
+        if ($request->categories) {
             $product->categories()->attach($request->categories);
         }
 
-        return to_route('product.index')->with('status','Producto Creado Correctamente!');
-
+        return to_route('product.index')->with('status', 'Producto Creado Correctamente!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Product $product)
-    {   $category = Category::pluck('id','name');
-        return view('product.edit',compact('category','product'));
+    {
+        $category = Category::pluck('id', 'name');
+        return view('product.edit', compact('category', 'product'));
     }
 
     /**
@@ -79,27 +67,27 @@ class ProductController extends Controller
 
         $product->update($request->all());
 
-        if($request->categories){
+        if ($request->categories) {
             $product->categories()->sync($request->categories);
         }
 
-        if($request->file('file')){
-            $image = Storage::put('products',$request->file('file'));
+        if ($request->file('file')) {
+            $image = Storage::put('products', $request->file('file'));
 
-            if($product->image){
+            if ($product->image) {
                 Storage::delete($product->image);
 
                 $product->update([
                     'image' => $image
                 ]);
-            }else{
+            } else {
                 $product->create([
                     'image' => $image
                 ]);
             }
         }
 
-        return to_route('product.index')->with('status','Producto Actualizado Correctamente!');
+        return to_route('product.index')->with('status', 'Producto Actualizado Correctamente!');
     }
 
     /**
