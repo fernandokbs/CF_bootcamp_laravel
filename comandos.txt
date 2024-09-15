@@ -25,8 +25,28 @@ $category = Category::find(1);
 $products = $category->products()->get();
 $category = Category::with('products')->find(1);
 
+*******************************************************
+
+php artisan storage:link
+
 
 
  $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         Post::create($data);
+
+
+# miGRACIONES
+
+php artisan make:migration add_activo_to_users_table --table=users
+
+#LIvewire
+composer require livewire/livewire
+php artisan make:livewire UserSearch
+
+(lógica del componente)
+app/Http/Livewire/ProductSearch.php
+
+(vista del componente)
+resources/views/livewire/product-search.blade.php
+
