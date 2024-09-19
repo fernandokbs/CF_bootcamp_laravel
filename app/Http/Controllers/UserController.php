@@ -107,4 +107,9 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user.index')->with('status', 'Usuario eliminado correctamente');
     }
+
+    public function loginClient()
+    {
+        return view('client.create');
+    }
 }

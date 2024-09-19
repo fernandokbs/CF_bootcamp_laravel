@@ -58,12 +58,13 @@ resources/views/livewire/product-search.blade.php
 X Autenticación y Autorización
 X Gestión de Productos
 X Gestion de categorias
-- Panel de Administración
+X Panel de Administración
 - Sistema de Cache
 
 - Manejo de roles (Admin/User)
 - Carrito de Compras
 - Proceso de Pago (Paypal, Stripe)
+- pruebas unitarias
 
 Lineamientos
 ● Inyección de Dependencias.

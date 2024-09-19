@@ -50,6 +50,7 @@ class ProductController extends Controller
             $product->categories()->attach($request->categories);
         }
 
+        Cache::forget('products_page_' . request()->input('page', 1));
         return to_route('product.index')->with('status', 'Producto Creado Correctamente!');
     }
 
@@ -86,7 +87,7 @@ class ProductController extends Controller
                 ]);
             }
         }
-
+        Cache::forget('products_page_' . request()->input('page', 1));
         return to_route('product.index')->with('status', 'Producto Actualizado Correctamente!');
     }
 
