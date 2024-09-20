@@ -16,6 +16,6 @@ class HomeController extends Controller
     $products = Cache::remember('products_page_' . request()->input('page', 1), 60 * 60, function () {
       return Product::with('categories')->orderBy('id', 'desc')->paginate(20);
     });
-    return view('welcome', compact('products'));
+    return view('client.principal', compact('products'));
   }
 }

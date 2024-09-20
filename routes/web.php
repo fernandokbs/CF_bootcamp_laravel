@@ -5,7 +5,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckAuthenticated;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
@@ -39,6 +41,18 @@ Route::middleware('auth')->group(function () {
     Route::get('product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('product/{product}/update', [ProductController::class, 'update'])->name('product.update');
 });
+
+/* Clientes */
+Route::get('create', [ClientController::class, 'create'])->name('client.create');
+Route::post('create/store', [ClientController::class, 'store'])->name('client.store');
+Route::get('ingreso', [ClientController::class, 'loginClient'])->name('ingreso.index');
+Route::get('cerrarSesionCliente', [ClientController::class, 'cerrarSesionCliente'])->name('cerrarSesionCliente');
+Route::post('evaluaIngresoCliente', [ClientController::class, 'evaluaIngresoCliente'])->name('evaluaIngresoCliente');
+Route::get('verPerfil', [ClientController::class, 'verPerfil'])->name('verPerfil')->middleware(CheckAuthenticated::class);
+Route::post('editarPerfil', [ClientController::class, 'editarPerfil'])->name('editarPerfil');
+
+
+
 
 
 

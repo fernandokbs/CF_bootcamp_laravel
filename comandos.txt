@@ -53,6 +53,11 @@ app/Http/Livewire/ProductSearch.php
 (vista del componente)
 resources/views/livewire/product-search.blade.php
 
+
+php artisan make:model Client -m
+
+php artisan make:controller ClientController --model=Client
+
 *********************************************************************
 
 X Autenticación y Autorización

@@ -8,8 +8,9 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -106,10 +107,5 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index')->with('status', 'Usuario eliminado correctamente');
-    }
-
-    public function loginClient()
-    {
-        return view('client.create');
     }
 }
