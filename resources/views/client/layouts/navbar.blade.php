@@ -17,7 +17,7 @@
                 <li class="relative group" x-data="{ open: false }">
                     <a href="shop.html" @mouseover="open = true" @mouseleave="open = false" href="#"
                         class="hover:text-secondary font-semibold flex items-center">
-                        Men
+                        Gatos
                         <i :class="open ? 'fas fa-chevron-up ml-1 text-xs' : 'fas fa-chevron-down ml-1 text-xs'"></i>
                     </a>
                     <ul x-show="open" @mouseover="open = true" @mouseleave="open = false"
@@ -27,22 +27,22 @@
                         x-transition:leave="transition ease-in duration-100"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
                         <li><a href="shop.html"
-                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Men Item
+                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Gatos Item
                                 1</a></li>
                         <li><a href="shop.html"
-                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Men Item
+                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Gatos Item
                                 2</a></li>
                         <li><a href="shop.html"
-                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Men Item
+                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Gatos Item
                                 3</a></li>
                     </ul>
                 </li>
 
-                <!-- Women Dropdown -->
+                <!-- Perros Dropdown -->
                 <li class="relative group" x-data="{ open: false }">
                     <a href="shop.html" @mouseover="open = true" @mouseleave="open = false" href="#"
                         class="hover:text-secondary font-semibold flex items-center">
-                        Women
+                        Perros
                         <i :class="open ? 'fas fa-chevron-up ml-1 text-xs' : 'fas fa-chevron-down ml-1 text-xs'"></i>
                     </a>
                     <ul x-show="open" @mouseover="open = true" @mouseleave="open = false"
@@ -52,21 +52,18 @@
                         x-transition:leave="transition ease-in duration-100"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
                         <li><a href="shop.html"
-                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Women
+                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Perros
                                 Item 1</a></li>
                         <li><a href="shop.html"
-                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Women
+                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Perros
                                 Item 2</a></li>
                         <li><a href="shop.html"
-                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Women
+                                class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Perros
                                 Item 3</a></li>
                     </ul>
                 </li>
 
-                <li><a href="shop.html" class="hover:text-secondary font-semibold">Shop</a></li>
-                <li><a href="single-product-page.html" class="hover:text-secondary font-semibold">Product</a></li>
-                <li><a href="404.html" class="hover:text-secondary font-semibold">404 page</a></li>
-                <li><a href="checkout.html" class="hover:text-secondary font-semibold">Checkout</a></li>
+                <li><a href="{{ route('checkout') }}" class="hover:text-secondary font-semibold">Checkout</a></li>
             </ul>
         </nav>
 
