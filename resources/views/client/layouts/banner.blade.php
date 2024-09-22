@@ -1,5 +1,5 @@
 <!-- Banner section -->
-<section id="banner" class="relative my-16">
+<section id="banner" class="relative my-32">
     <div class="container mx-auto px-4 py-20 rounded-lg relative bg-cover bg-center"
         style="background-image: url({{ asset('build/images/banner1.jpg') }});">
         <div class="absolute inset-0 bg-black opacity-40 rounded-lg"></div>

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('build/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/css/custom.css') }}">
 
 
     <style>
@@ -137,9 +137,6 @@
             </div>
         </div>
     </footer>
-
-    <!--<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <!--asset('build/js/script.js')-->
 </body>
 
 </html>

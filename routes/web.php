@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAuthenticated;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('product/{slug}', [HomeController::class, 'show'])->name('product.show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,11 +42,17 @@ Route::middleware('auth')->group(function () {
     Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('product/{product}/update', [ProductController::class, 'update'])->name('product.update');
+
+    Route::get('client', [ClientController::class, 'index'])->name('client.index');
+    Route::get('client/create', [ClientController::class, 'create'])->name('client.create');
+    Route::post('client/store', [ClientController::class, 'store'])->name('client.store');
+    Route::get('client/{client}/edit', [ClientController::class, 'edit'])->name('client.edit');
+    Route::put('client/{client}/update', [ClientController::class, 'update'])->name('client.update');
 });
 
 /* Clientes */
-Route::get('create', [ClientController::class, 'create'])->name('client.create');
-Route::post('create/store', [ClientController::class, 'store'])->name('client.store');
+Route::get('newClient', [ClientController::class, 'newClient'])->name('client.newClient');
+Route::post('create/store', [ClientController::class, 'storeNewClient'])->name('storeNewClient');
 Route::get('ingreso', [ClientController::class, 'loginClient'])->name('ingreso.index');
 Route::get('cerrarSesionCliente', [ClientController::class, 'cerrarSesionCliente'])->name('cerrarSesionCliente');
 Route::post('evaluaIngresoCliente', [ClientController::class, 'evaluaIngresoCliente'])->name('evaluaIngresoCliente');

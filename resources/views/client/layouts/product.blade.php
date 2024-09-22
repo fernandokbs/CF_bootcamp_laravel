@@ -15,9 +15,16 @@
                             <span class="text-lg font-bold text-primary">${{ $product->price }}</span>
                             <span class="text-sm line-through ml-2">${{ $product->price }}</span>
                         </div>
-                        <button
-                            class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">Add
-                            to Cart</button>
+                        <div class="flex space-x-2">
+                            <a href="{{ route('product.show', ['slug' => $product->slug]) }} "
+                                class="text-center bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full flex-1">
+                                Ver Producto
+                            </a>
+                            <a href="#"
+                                class="text-center bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full flex-1">
+                                Agregar al Carro
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforeach

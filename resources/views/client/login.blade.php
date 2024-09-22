@@ -44,7 +44,7 @@
                         <div class="mb-3">
                             <p class="text-center"><a href="#" class="text-primary hover:underline d-block">¿Olvidó su
                                     contraseña?</a></p>
-                            <p class="text-center"><a href="{{ route('client.create') }}"
+                            <p class="text-center"><a href="{{ route('client.newClient') }}"
                                     class="text-primary hover:underline d-block"> ¿No tiene
                                     una cuenta? Cree
                                     una

@@ -45,6 +45,7 @@ composer require livewire/livewire
 php artisan make:livewire UserSearch
 php artisan make:livewire CategorySearch
 php artisan make:livewire ProductSearch
+php artisan make:livewire ClientSearch
 
 
 (lógica del componente)
@@ -64,9 +65,9 @@ X Autenticación y Autorización
 X Gestión de Productos
 X Gestion de categorias
 X Panel de Administración
-- Sistema de Cache
+X Sistema de Cache
+X Manejo de roles (Admin/User)
 
-- Manejo de roles (Admin/User)
 - Carrito de Compras
 - Proceso de Pago (Paypal, Stripe)
 - pruebas unitarias
@@ -76,8 +77,6 @@ Lineamientos
 ● Uso de Facade
 ● Registro servicio en service container
 ● Integración servicio tercero
-● Uso de cache
-● Uso de pruebas unitarias
 ● Uso de pruebas en navegador
 ● Uso de pest/PHPUnit (Mocks)
 ● Uso Livewire (Opcional) (Si se usa Livewire usar volt)

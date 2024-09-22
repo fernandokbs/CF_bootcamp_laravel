@@ -18,4 +18,10 @@ class HomeController extends Controller
     });
     return view('client.principal', compact('products'));
   }
+
+  public function show($slug)
+  {
+    $product = Product::where('slug', $slug)->firstOrFail();
+    return view('client.detalleProducto', compact('product')); // Devuelve la vista con el cliente encontrado
+  }
 }

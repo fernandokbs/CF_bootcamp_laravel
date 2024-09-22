@@ -20,6 +20,10 @@
                         {{ __('Usuarios') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('client.index')" :active="request()->routeIs('client.index')">
+                        {{ __('Clientes') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                         {{ __('Categoria') }}
                     </x-nav-link>

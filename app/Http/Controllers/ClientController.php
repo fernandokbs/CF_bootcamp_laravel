@@ -17,7 +17,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return view('client.index');
     }
 
     /**
@@ -25,13 +25,106 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client.register');
+        return view('client.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+    {
+        $data = $request->all();
+        if ($request->password !== $request->confirmPassword) {
+            return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden.'])->withInput();
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:clients,email',
+            'password' => 'nullable|string|min:8',
+            'rut' => 'nullable|string|min:8|max:20',
+            'telefono' => 'nullable|string|min:8|max:30',
+            'direccion' => 'nullable|string|min:8|max:255'
+        ]);
+
+        $data['password'] = Hash::make($request->password);
+
+        Client::create($data);
+        return to_route('client.index')->with('status', 'Registro Creado Correctamente!');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Client $client)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Client $client)
+    {
+        return view('client.edit', compact('client'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Client $client)
+    {
+        // Validar los campos necesarios
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:clients,email,' . $client->id,
+            'password' => 'nullable|string|min:8',
+            'confirmPassword' => 'nullable|string|min:8',
+            'rut' => 'nullable|string|min:8|max:20',
+            'telefono' => 'nullable|string|min:8|max:30',
+            'direccion' => 'nullable|string|min:8|max:255',
+        ]);
+
+        // Verificar si las contraseñas coinciden
+        if ($request->filled('password') && $request->password !== $request->confirmPassword) {
+            return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden.'])->withInput();
+        }
+
+        $client->name = $request->input('name');
+        $client->email = $request->input('email');
+        $client->rut = $request->input('rut');
+        $client->telefono = $request->input('telefono');
+        $client->direccion = $request->input('direccion');
+        $client->activo = $request->input('activo');
+
+        if ($request->filled('password')) {
+            $client->password = Hash::make($request->input('password'));
+        }
+
+        $client->save(); // Guardar los cambios
+
+        return to_route('client.index')->with('status', 'Registro Actualizado Correctamente!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Client $client)
+    {
+        //
+    }
+
+    public function loginClient()
+    {
+        return view('client.login');
+    }
+
+    public function newClient()
+    {
+        return view('client.register');
+    }
+
+    public function storeNewClient(Request $request)
     {
         $data = $request->all();
         if ($request->password !== $request->confirmPassword) {
@@ -51,43 +144,6 @@ class ClientController extends Controller
         return to_route('ingreso.index')->with('status', 'Registro Creado Correctamente!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Client $client)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Client $client)
-    {
-        //
-    }
-
-    public function loginClient()
-    {
-        return view('client.login');
-    }
-
     public function evaluaIngresoCliente(Request $request)
     {
         $request->validate([
@@ -95,7 +151,10 @@ class ClientController extends Controller
             'password' => 'required|string',
         ]);
 
-        $user = Client::where('email', $request->email)->first();
+        $user = Client::where('email', $request->email)
+            ->where('activo', 1)
+            ->first();
+
         if ($user && Hash::check($request->password, $user->password)) {
             Session::put('email', $request->email);
             Session::put('name', $user->name);
