@@ -80,43 +80,43 @@
 
 
             <a href="{{ route('login') }}"
-                class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Adminstrar</a>
+                class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Administrar</a>
             <div class="relative group cart-wrapper">
-                <a href="/cart.html">
-                    <img src="{{ asset('build/images/cart-shopping.svg') }}" alt="Cart"
-                        class="h-6 w-6 group-hover:scale-120">
+                <a href="{{ route('verCarrrito') }}">
+                    <div class="flex items-center">
+
+                        <p
+                            class="cart-decrement border border-primary bg-primary text-white hover:bg-transparent hover:text-primary rounded-full w-20 h-11 flex items-center justify-center">
+                            <img src="{{ asset('build/images/cart-shopping.svg') }}" alt="Cart"
+                                class="w-6 h-6 mr-2">
+                            {{ Cart::count() }}
+                        </p>
+                    </div>
                 </a>
+
                 <!-- Cart dropdown -->
                 <div class="absolute right-0 mt-1 w-80 bg-white shadow-lg p-4 rounded hidden group-hover:block">
                     <div class="space-y-4">
+
                         <!-- product item -->
-                        <div class="flex items-center justify-between pb-4 border-b border-gray-line">
-                            <div class="flex items-center">
-                                <img src="{{ asset('build/images/2.png') }}" alt="Product"
-                                    class="h-12 w-12 object-cover rounded mr-2">
-                                <div>
-                                    <p class="font-semibold">Summer black dress</p>
-                                    <p class="text-sm">Quantity: 1</p>
+                        @foreach (Cart::content() as $row)
+                            <div class="flex items-center justify-between pb-4 border-b border-gray-line">
+                                <div class="flex items-center">
+                                    <img src="{{ $row->options->image }}" alt="Product"
+                                        class="h-12 w-12 object-cover rounded mr-2">
+                                    <div>
+                                        <p class="font-semibold">{{ $row->name }}</p>
+                                        <p class="text-sm">{{ $row->qty }}</p>
+                                    </div>
                                 </div>
+                                <p class="font-semibold">{{ $row->total }}</p>
                             </div>
-                            <p class="font-semibold">$25.00</p>
-                        </div>
-                        <!-- product item -->
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <img src="{{ asset('build/images/2.png') }}" alt="Product"
-                                    class="h-12 w-12 object-cover rounded mr-2">
-                                <div>
-                                    <p class="font-semibold">Black suit</p>
-                                    <p class="text-sm">Quantity: 1</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold">$125.00</p>
-                        </div>
+                        @endforeach
+
                     </div>
-                    <a href="/cart.html"
-                        class="block text-center mt-4 border border-primary bg-primary hover:bg-transparent text-white hover:text-primary py-2 rounded-full font-semibold">Go
-                        to Cart</a>
+                    <a href="{{ route('verCarrrito') }}"
+                        class="block text-center mt-4 border border-primary bg-primary hover:bg-transparent text-white hover:text-primary py-2 rounded-full font-semibold">Ver
+                        el carrito</a>
                 </div>
             </div>
             <!-- Search field -->

@@ -66,6 +66,10 @@ Route::post('editarPerfil', [ClientController::class, 'editarPerfil'])->name('ed
 /*Shoppingcart*/
 
 Route::get('checkout', [ShoppingCartController::class, 'index'])->name('checkout');
+Route::get('verCarrrito', [ShoppingCartController::class, 'verCarrito'])->name('verCarrrito');
+Route::post('/cart/add', [ShoppingCartController::class, 'addProductToCart'])->name('cart.add');
+Route::patch('/cart/update/{rowId}', [ShoppingCartController::class, 'update'])->name('cart.update');
+
 
 
 

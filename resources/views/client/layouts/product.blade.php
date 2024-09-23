@@ -1,4 +1,10 @@
 <!-- Latest product section -->
+@if (session('success'))
+    <div class="bg-green-500 text-white p-4 rounded">
+        {{ session('success') }}
+    </div>
+@endif
+
 <section id="latest-products" class="py-10">
     <div class="container mx-auto px-4">
         <h2 class="text-2xl font-bold mb-8">Ultimos Productos</h2>
@@ -20,10 +26,20 @@
                                 class="text-center bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full flex-1">
                                 Ver Producto
                             </a>
-                            <a href="#"
-                                class="text-center bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full flex-1">
-                                Agregar al Carro
-                            </a>
+                            <form action="{{ route('cart.add') }}" method="POST" class="w-full flex-1">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <input type="hidden" name="image" value="{{ asset('storage/' . $product->image) }}">
+                                <!-- Ruta de la imagen -->
+
+                                <button type="submit"
+                                    class="text-center bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">
+                                    Agregar
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

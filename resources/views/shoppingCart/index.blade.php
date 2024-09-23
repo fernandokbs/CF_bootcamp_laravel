@@ -63,17 +63,18 @@
                 <!-- Order Summary -->
                 <div class="md:w-1/3 bg-white rounded-lg shadow-md p-4">
                     <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+
                     <div class="flex justify-between mb-4">
                         <p>Subtotal</p>
-                        <p>$59.00</p>
+                        <p>{{ Cart::subtotal() }}</p>
                     </div>
                     <div class="flex justify-between mb-4">
-                        <p>Shipping</p>
-                        <p>$10.00</p>
+                        <p>tax</p>
+                        <p>{{ Cart::tax() }}</p>
                     </div>
                     <div class="flex justify-between mb-4">
                         <p class="font-semibold">Total</p>
-                        <p class="font-semibold">$69.00</p>
+                        <p class="font-semibold">{{ Cart::total() }}</p>
                     </div>
                     <button
                         class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-4 rounded-full w-full">Proceed
