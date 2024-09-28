@@ -83,3 +83,8 @@ Lineamientos
 ● Uso de convenciones en Laravel
 ● Use de Laravel pint ( Para el formateo de código)
 - CSS/Bootstrap/Tailwind
+
+
+php artisan make:test ReiniciarContrasenaTest
+
+ 
