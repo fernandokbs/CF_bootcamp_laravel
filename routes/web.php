@@ -13,8 +13,6 @@ use App\Http\Middleware\CheckAuthenticated;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('product/{slug}', [HomeController::class, 'show'])->name('product.show');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -42,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('product', [ProductController::class, 'index'])->name('product.index');
     Route::get('product/create', [ProductController::class, 'create'])->name('product.create');
+
+
     Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('product/{product}/update', [ProductController::class, 'update'])->name('product.update');
@@ -52,6 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::get('client/{client}/edit', [ClientController::class, 'edit'])->name('client.edit');
     Route::put('client/{client}/update', [ClientController::class, 'update'])->name('client.update');
 });
+
+
+Route::get('product/{slug}', [HomeController::class, 'show'])->name('product.show');
 
 /* Clientes */
 Route::get('newClient', [ClientController::class, 'newClient'])->name('client.newClient');

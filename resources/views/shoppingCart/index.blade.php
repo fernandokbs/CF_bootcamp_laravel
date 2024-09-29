@@ -66,15 +66,27 @@
 
                     <div class="flex justify-between mb-4">
                         <p>Subtotal</p>
-                        <p>{{ Cart::subtotal() }}</p>
+                        @php
+                            $subTotal = (float) str_replace(',', '', Cart::subtotal());
+                            $subTotalFormatted = number_format($subTotal, 0, ',', '.');
+                        @endphp
+                        <p>${{ $subTotalFormatted }}</p>
                     </div>
                     <div class="flex justify-between mb-4">
                         <p>tax</p>
-                        <p>{{ Cart::tax() }}</p>
+                        @php
+                            $taxes = (float) str_replace(',', '', Cart::tax());
+                            $taxesFormatted = number_format($taxes, 0, ',', '.');
+                        @endphp
+                        <p>${{ $taxesFormatted }}</p>
                     </div>
                     <div class="flex justify-between mb-4">
                         <p class="font-semibold">Total</p>
-                        <p class="font-semibold">{{ Cart::total() }}</p>
+                        @php
+                            $total = (float) str_replace(',', '', Cart::total());
+                            $totalFormatted = number_format($total, 0, ',', '.');
+                        @endphp
+                        <p class="font-semibold">${{ $totalFormatted }}</p>
                     </div>
                     <button
                         class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-4 rounded-full w-full">Proceed

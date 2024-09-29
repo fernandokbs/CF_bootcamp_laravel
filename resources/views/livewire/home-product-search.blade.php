@@ -56,8 +56,18 @@
                             <a href="#" class="text-lg font-semibold mb-2">{{ $product->name }}</a>
                             <p class=" my-2">{{ $product->brand }}</p>
                             <div class="flex items-center mb-4">
-                                <span class="text-lg font-bold text-primary">${{ $product->price }}</span>
-                                <span class="text-sm line-through ml-2">${{ $product->price }}</span>
+                                @if ($product->discount > 0)
+                                    <span
+                                        class="text-lg font-bold text-primary">${{ number_format($product->price * ((100 - $product->discount) / 100), 0, ',', '.') }}</span>
+                                    <span
+                                        class="text-sm line-through ml-2">${{ number_format($product->price, 0, ',', '.') }}</span>
+                                @else
+                                    <span
+                                        class="text-lg font-bold text-primary">${{ number_format($product->price, 0, ',', '.') }}</span>
+                                @endif
+
+
+
                             </div>
                             <div class="flex space-x-2">
                                 <a href="{{ route('product.show', ['slug' => $product->slug]) }} "
@@ -68,7 +78,12 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $product->id }}">
                                     <input type="hidden" name="name" value="{{ $product->name }}">
-                                    <input type="hidden" name="price" value="{{ $product->price }}">
+                                    @if ($product->discount > 0)
+                                        <input type="hidden" name="price"
+                                            value="{{ $product->price * ((100 - $product->discount) / 100) }}">
+                                    @else
+                                        <input type="hidden" name="price" value="{{ $product->price }}">
+                                    @endif
                                     <input type="hidden" name="quantity" value="1">
                                     <input type="hidden" name="image"
                                         value="{{ asset('storage/' . $product->image) }}">

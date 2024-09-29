@@ -16,10 +16,10 @@ class ProductFactory extends Factory
      * @return array<string, mixed>
      */
 
-    
+
 
     public function definition(): array
-    {   
+    {
         $name = $this->generateProductName();
 
         return [
@@ -27,10 +27,11 @@ class ProductFactory extends Factory
             'slug' => Str::slug($name),
             'description' => $this->faker->sentence,
             'brand' => $this->faker->words(10, true),
-            'price' => $this->faker->randomFloat(2, 10, 100),
+            'price' => $this->faker->randomFloat(0, 5000, 200000),
             'stock' => $this->faker->randomDigit(2, 10, 100),
-            'image' => 'products/' . $this->faker->image('public/storage/products',640,480, null ,false,),
+            'image' => 'products/' . $this->faker->image('public/storage/products', 640, 480, null, false,),
             'visible' => fake()->boolean ? 1 : 0,
+            'discount' => 0,
             'created_at' => fake()->dateTime(),
             'updated_at' => fake()->dateTime(),
         ];
@@ -41,5 +42,3 @@ class ProductFactory extends Factory
         return $this->faker->words(3, true);
     }
 }
-
-

@@ -46,7 +46,8 @@
                                                     <p class="text-sm md:text-base md:font-semibold">{{ $row->name }}</p>
                                                 </div>
                                             </td>
-                                            <td class="px-1 py-4 text-center">{{ $row->price }}</td>
+                                            <td class="px-1 py-4 text-center">${{ number_format($row->price, 0, ',', '.') }}
+                                            </td>
                                             <td class="px-1 py-4 text-center">
                                                 <div class="flex items-center justify-center">
                                                     <!-- Botón para disminuir cantidad -->
@@ -68,7 +69,8 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td class="px-1 py-4 text-right">${{ $row->total }}</td>
+                                            <td class="px-1 py-4 text-right">${{ number_format($row->total, 0, ',', '.') }}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -81,16 +83,28 @@
                         <h2 class="text-lg font-semibold mb-4">Resumen</h2>
                         <div class="flex justify-between mb-4">
                             <p>Subtotal</p>
-                            <p>${{ Cart::subtotal() }}</p>
+                            @php
+                                $subTotal = (float) str_replace(',', '', Cart::subtotal());
+                                $subTotalFormatted = number_format($subTotal, 0, ',', '.');
+                            @endphp
+                            <p>${{ $subTotalFormatted }}</p>
                         </div>
                         <div class="flex justify-between mb-4">
                             <p>Taxes</p>
-                            <p>${{ Cart::tax() }}</p>
+                            @php
+                                $taxes = (float) str_replace(',', '', Cart::tax());
+                                $taxesFormatted = number_format($taxes, 0, ',', '.');
+                            @endphp
+                            <p>${{ $taxesFormatted }}</p>
                         </div>
 
                         <div class="flex justify-between mb-2">
                             <p class="font-semibold">Total</p>
-                            <p class="font-semibold">${{ Cart::total() }}</p>
+                            @php
+                                $total = (float) str_replace(',', '', Cart::total());
+                                $totalFormatted = number_format($total, 0, ',', '.');
+                            @endphp
+                            <p class="font-semibold">${{ $totalFormatted }}</p>
                         </div>
                         <a href="/checkout"
                             class="bg-primary text-white border hover:border-primary hover:bg-transparent hover:text-primary py-2 px-4 rounded-full mt-4 w-full text-center block">Proceder

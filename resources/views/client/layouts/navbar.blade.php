@@ -109,7 +109,7 @@
                                         <p class="text-sm">{{ $row->qty }}</p>
                                     </div>
                                 </div>
-                                <p class="font-semibold">{{ $row->total }}</p>
+                                <p class="font-semibold">{{ number_format($row->total, 0, ',', '.') }}</p>
                             </div>
                         @endforeach
 

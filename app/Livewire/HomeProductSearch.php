@@ -12,11 +12,16 @@ class HomeProductSearch extends Component
 {
     public $search = '';
 
+
     public function render()
     {
-        $products = Cache::remember('products_page_' . $this->search . '_' . request()->input('page', 1), 60 * 60, function () {
+        $cachePrefix = Cache::get('products_cache_prefix', 'default_prefix');
+        $key = $cachePrefix . '_page_' . $this->search . '_' . request()->input('page', 1);
+
+        $products = Cache::remember($key, 60 * 60, function () {
             return Product::with('categories')
                 ->where('name', 'like', '%' . $this->search . '%')
+                ->where('visible', 1)
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         });

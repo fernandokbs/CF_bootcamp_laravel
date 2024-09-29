@@ -84,22 +84,64 @@
 
                             </div>
 
-                            <div class="text-2xl font-semibold mb-8">${{ $product->price }}</div>
-                            @if ($product->stock > 0)
-                                <div class="flex items-center mb-8">
-                                    <button id="decrease"
-                                        class="bg-primary hover:bg-transparent border border-transparent hover:border-primary text-white hover:text-primary font-semibold w-10 h-10 rounded-full flex items-center justify-center focus:outline-none"
-                                        disabled>-</button>
-                                    <input id="quantity" type="number" value="1"
-                                        class="w-16 py-2 text-center focus:outline-none" readonly>
-                                    <button id="increase"
-                                        class="bg-primary hover:bg-transparent border border-transparent hover:border-primary text-white hover:text-primary font-semibold  w-10 h-10 rounded-full focus:outline-none">+</button>
-                                </div>
+                            <div class="text-2xl font-semibold mb-8">
 
-                                <button
-                                    class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full">Add
-                                    to Cart</button>
+                                @if ($product->discount > 0)
+                                    <span
+                                        class="text-lg font-bold text-primary">${{ number_format($product->price * ((100 - $product->discount) / 100), 0, ',', '.') }}</span>
+                                    <span
+                                        class="text-sm line-through ml-2">${{ number_format($product->price, 0, ',', '.') }}</span>
+                                @else
+                                    <span
+                                        class="text-lg font-bold text-primary">${{ number_format($product->price, 0, ',', '.') }}</span>
+                                @endif
+                            </div>
+
+                            @if ($product->stock > 0)
+                                <td class="px-1 py-4 text-center">
+                                    <div class="flex items-center justify-center">
+
+                                        @if ($row = Cart::content()->firstWhere('id', $product->id))
+                                            <form action="{{ route('cart.update', $row->rowId) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="quantity" value="{{ $row->qty - 1 }}">
+                                                <button type="submit"
+                                                    class="cart-decrement border border-primary bg-primary text-white hover:bg-transparent hover:text-primary rounded-full w-10 h-10 flex items-center justify-center">-</button>
+                                            </form>
+                                            <p class="quantity text-center w-8">{{ $row->qty }}</p>
+
+                                            <form action="{{ route('cart.update', $row->rowId) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="quantity" value="{{ $row->qty + 1 }}">
+                                                <button type="submit"
+                                                    class="cart-increment border border-primary bg-primary text-white hover:bg-transparent hover:text-primary rounded-full w-10 h-10 flex items-center justify-center">+</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                                @if ($product->discount > 0)
+                                                    <input type="hidden" name="price"
+                                                        value="{{ $product->price * ((100 - $product->discount) / 100) }}">
+                                                @else
+                                                    <input type="hidden" name="price" value="{{ $product->price }}">
+                                                @endif
+
+                                                <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="image"
+                                                    value="{{ asset('storage/' . $product->image) }}">
+                                                <button type="submit"
+                                                    class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full">Add
+                                                    to Cart</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
                             @endif
+
                         </div>
                         <!-- Social sharing -->
                         <div class="flex space-x-4 my-6">

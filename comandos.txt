@@ -47,6 +47,8 @@ php artisan make:livewire CategorySearch
 php artisan make:livewire ProductSearch
 php artisan make:livewire ClientSearch
 
+php artisan make:livewire HomeProductSearch
+
 
 (lógica del componente)
 app/Http/Livewire/ProductSearch.php
@@ -103,4 +105,5 @@ php artisan dusk:make LoginTest
 
 λ php artisan dusk --env=dusk
 
-
+//crear campo descuento
+php artisan make:migration add_discount_to_products_table --table=products
