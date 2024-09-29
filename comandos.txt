@@ -87,4 +87,20 @@ Lineamientos
 
 php artisan make:test ReiniciarContrasenaTest
 
- 
+
+Pruebas con dusk
+
+habilitar zip -> C:\laragon\bin\php\php-8.2.21-Win32-vs16-x64\php.ini
+
+;extension=zip
+
+C:\laragon\bin\php\php-8.2.21-Win32-vs16-x64\php.ini
+
+composer require --dev laravel/dusk
+ php artisan dusk:install
+
+php artisan dusk:make LoginTest
+
+λ php artisan dusk --env=dusk
+
+

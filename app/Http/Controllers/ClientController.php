@@ -38,6 +38,7 @@ class ClientController extends Controller
             return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden.'])->withInput();
         }
 
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:clients,email',

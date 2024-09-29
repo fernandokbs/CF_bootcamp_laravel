@@ -14,7 +14,7 @@ class ProductSearch extends Component
         $products = Product::with('categories')
             ->where('name', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'desc')
-            ->paginate(10);;
+            ->paginate(10);
         return view('livewire.product-search', ['products' => $products]);
     }
 }

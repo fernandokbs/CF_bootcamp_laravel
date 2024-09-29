@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        @livewire('client-search')
+        @livewire('product-search')
 
     </div>
 

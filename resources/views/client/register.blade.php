@@ -23,7 +23,7 @@
             <div class="">
                 <div class="bg-white rounded-lg shadow-md p-4">
                     <h2 class="text-2xl font-semibold mb-4 text-center">Crear una cuenta</h2>
-                    <form method="POST" action="{{ route('editarPerfil') }}">
+                    <form method="POST" action="{{ route('storeNewClient') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="login-email" class="block ">Nombre</label>
