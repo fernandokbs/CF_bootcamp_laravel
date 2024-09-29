@@ -42,16 +42,14 @@
                 <div class="w-full sm:w-1/6 px-4 mb-8">
                     <h3 class="text-lg font-semibold mb-4">Shop</h3>
                     <ul>
-                        <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
-                        <li><a href="/single-product-page.html" class="hover:text-primary">Women</a></li>
-                        <li><a href="/shop.html" class="hover:text-primary">Men</a></li>
-                        <li><a href="/single-product-page.html" class="hover:text-primary">Shoes</a></li>
-                        <li><a href="/single-product-page.html" class="hover:text-primary">Accessories</a></li>
+                        <li><a href="/" class="hover:text-primary">Gatos</a></li>
+                        <li><a href="/" class="hover:text-primary">Perros</a></li>
+                        <li><a href="/" class="hover:text-primary">Accesorios</a></li>
                     </ul>
                 </div>
                 <!-- Menu 2 -->
                 <div class="w-full sm:w-1/6 px-4 mb-8">
-                    <h3 class="text-lg font-semibold mb-4">Pages</h3>
+                    <h3 class="text-lg font-semibold mb-4">Paginas</h3>
                     <ul>
                         <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
                         <li><a href="/single-product-page.html" class="hover:text-primary">Product</a></li>
@@ -61,16 +59,16 @@
                 </div>
                 <!-- Menu 3 -->
                 <div class="w-full sm:w-1/6 px-4 mb-8">
-                    <h3 class="text-lg font-semibold mb-4">Account</h3>
+                    <h3 class="text-lg font-semibold mb-4">Cuenta</h3>
                     <ul>
-                        <li><a href="/cart.html" class="hover:text-primary">Cart</a></li>
-                        <li><a href="/register.html" class="hover:text-primary">Registration</a></li>
-                        <li><a href="/register.html" class="hover:text-primary">Login</a></li>
+                        <li><a href="{{ route('verCarrrito') }}" class="hover:text-primary">Carrito</a></li>
+                        <li><a href="{{ route('client.newClient') }}" class="hover:text-primary">Registro</a></li>
+                        <li><a href="{{ route('ingreso.index') }}" class="hover:text-primary">Ingreso</a></li>
                     </ul>
                 </div>
                 <!-- Social Media -->
                 <div class="w-full sm:w-1/6 px-4 mb-8">
-                    <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                    <h3 class="text-lg font-semibold mb-4">Siguenos</h3>
                     <ul>
                         <li class="flex items-center mb-2">
                             <img src="{{ asset('build/images/social_icons/facebook.svg') }}" alt="Facebook"
@@ -116,14 +114,16 @@
             <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
                 <!-- Copyright and Links -->
                 <div class="w-full lg:w-3/4 text-center lg:text-left mb-4 lg:mb-0">
-                    <p class="mb-2 font-bold">&copy; 2024 Your Company. All rights reserved.</p>
+                    <p class="mb-2 font-bold">&copy; 2024 Samyss. Todos los derechos reservados.</p>
                     <ul class="flex justify-center lg:justify-start space-x-4 mb-4 lg:mb-0">
                         <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
                         <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
                         <li><a href="#" class="hover:text-primary">FAQ</a></li>
                     </ul>
-                    <p class="text-sm mt-4">Your shop's description goes here. This is a brief introduction to your
-                        shop and what you offer.</p>
+                    <p class="text-sm mt-4"><b>Tu tienda de confianza para productos de mascotas:</b> En nuestra tienda
+                        encontrarás todo lo que tu mascota necesita. Ofrecemos una amplia gama de productos de alta
+                        calidad para perros, gatos y otras mascotas, desde alimentos nutritivos hasta juguetes, camas, y
+                        accesorios esenciales. ¡Nos preocupamos por el bienestar de tu mejor amigo!</p>
                 </div>
                 <!-- Payment Icons -->
                 <div class="w-full lg:w-1/4 text-center lg:text-right">

@@ -4,7 +4,7 @@
         style="background-image: url({{ asset('build/images/banner1.jpg') }});">
         <div class="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
         <div class="relative flex flex-col items-center justify-center h-full text-center text-white py-20">
-            <h2 class="text-4xl font-bold mb-4">Welcome to Our Shop</h2>
+            <h2 class="text-4xl font-bold mb-4">Bienvenido a nuestra tienda</h2>
             <div class="flex space-x-4">
                 <a href="#"
                     class="bg-primary hover:bg-transparent text-white hover:text-primary border border-transparent hover:border-primary font-semibold px-4 py-2 rounded-full inline-block">Shop
