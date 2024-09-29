@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\BillingController;
+
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAuthenticated;
@@ -64,6 +66,8 @@ Route::get('cerrarSesionCliente', [ClientController::class, 'cerrarSesionCliente
 Route::post('evaluaIngresoCliente', [ClientController::class, 'evaluaIngresoCliente'])->name('evaluaIngresoCliente');
 Route::get('verPerfil', [ClientController::class, 'verPerfil'])->name('verPerfil')->middleware(CheckAuthenticated::class);
 Route::post('editarPerfil', [ClientController::class, 'editarPerfil'])->name('editarPerfil');
+
+Route::post('pagar', [BillingController::class, 'pagar'])->name('pagar');
 
 
 /*Shoppingcart*/
