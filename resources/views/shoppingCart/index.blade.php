@@ -89,8 +89,8 @@
                         <p class="font-semibold">${{ $totalFormatted }}</p>
                     </div>
                     <button
-                        class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-4 rounded-full w-full">Proceed
-                        to Payment</button>
+                        class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-4 rounded-full w-full">Proceder
+                        al pago</button>
                 </div>
             </div>
         </div>

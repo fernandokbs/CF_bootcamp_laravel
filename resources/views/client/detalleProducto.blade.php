@@ -138,7 +138,11 @@
                                                     to Cart</button>
                                             </form>
                                         @endif
+
                                     </div>
+                                    <a href="{{ route('verCarrrito') }}"
+                                        class="block text-center mt-4 border border-primary bg-primary hover:bg-transparent text-white hover:text-primary py-2 rounded-full font-semibold">Ver
+                                        el carrito</a>
                                 </td>
                             @endif
 

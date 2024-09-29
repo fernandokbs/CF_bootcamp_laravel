@@ -16,14 +16,17 @@ class ShoppingCartController extends Controller
             ->where('activo', 1)
             ->first();
 
-
-        return view('shoppingcart.index', [
-            'fullname' => $user ? $user->name : null,
-            'email' => $user ? $user->email : null,
-            'address' => $user ? $user->direccion : null,
-            'rut' => $user ? $user->rut : null,
-            'phone' => $user ? $user->telefono : null,
-        ]);
+        if (is_null($user)) {
+            return redirect('ingreso');
+        } else {
+            return view('shoppingcart.index', [
+                'fullname' => $user ? $user->name : null,
+                'email' => $user ? $user->email : null,
+                'address' => $user ? $user->direccion : null,
+                'rut' => $user ? $user->rut : null,
+                'phone' => $user ? $user->telefono : null,
+            ]);
+        }
     }
 
     public function addProductToCart(Request $request)
