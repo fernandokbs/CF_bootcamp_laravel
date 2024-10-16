@@ -91,18 +91,13 @@ class ClientController extends Controller
             return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden.'])->withInput();
         }
 
-        $client->name = $request->input('name');
-        $client->email = $request->input('email');
-        $client->rut = $request->input('rut');
-        $client->telefono = $request->input('telefono');
-        $client->direccion = $request->input('direccion');
-        $client->activo = $request->input('activo');
+        $params = $request->all();
 
         if ($request->filled('password')) {
-            $client->password = Hash::make($request->input('password'));
+            $params['password'] = Hash::make($request->password);
         }
 
-        $client->save(); // Guardar los cambios
+        $client->save($params); 
 
         return to_route('client.index')->with('status', 'Registro Actualizado Correctamente!');
     }
@@ -174,7 +169,6 @@ class ClientController extends Controller
 
     public function editarPerfil(Request $request)
     {
-
         $client = Client::findOrFail(Session::get('id'));
 
         $request->validate([
@@ -190,23 +184,14 @@ class ClientController extends Controller
             'direccion' => 'nullable|string|min:8|max:255'
         ]);
 
+        $params = $request->all();
+
         if (!empty($request->new_password)) {
-            $client->name = $request->input('name');
-            $client->email = $request->input('email');
-            $client->password = Hash::make($request->input('new_password'));
-            $client->tratamiento = $request->input('tratamiento');
-            $client->rut = $request->input('rut');
-            $client->telefono = $request->input('telefono');
-            $client->direccion = $request->input('direccion');
-        } else {
-            $client->name = $request->input('name');
-            $client->email = $request->input('email');
-            $client->tratamiento = $request->input('tratamiento');
-            $client->rut = $request->input('rut');
-            $client->telefono = $request->input('telefono');
-            $client->direccion = $request->input('direccion');
+            $params['password'] = Hash::make($request->new_password);
         }
-        $client->save();
+
+        $client->update($params);
+
         return to_route('verPerfil')->with('exito_actualizado', 'Usuario Actualizado Correctamente!');
     }
 
